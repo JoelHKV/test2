@@ -1,0 +1,163 @@
+/* Set the size of the div element that contains the map */
+
+.container {
+
+    width: 700px;
+    height: 700px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid
+}
+
+
+
+.image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+
+#stationvstrip {
+    text-align: center;
+    position: absolute;
+    font-size: 2.6rem;
+    padding: 1rem 1rem;
+    font-weight: bold ;
+    cursor: pointer;
+}
+
+
+#language {
+    text-align: center;
+    position: absolute;
+    font-size: 1.6rem;
+    padding: 1rem 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+#menu {
+    overflow: scroll;
+    border: 1px solid gray;
+}
+#menu, #menutitle, #menutitleb {
+    position: absolute;
+    background-color: white;
+    border: 1px solid gray;
+}
+
+#menutitle {
+    overflow: hidden;
+}
+    #map-container {
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#innercalendar {
+    position: absolute;
+    overflow: scroll;
+    background-color: white;
+    border: 1px solid gray;
+    z-index: -1;
+    
+}
+
+
+#filterStations{
+    
+    text-align: left;
+    font-size: 1.3rem;
+    z-index: 1;
+}
+
+#departure_dropdown {
+    position: absolute;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    z-index: -1;
+    cursor: pointer;
+}
+
+#return_dropdown {
+    position: absolute;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    z-index: -1;
+    cursor: pointer;
+}
+
+
+#infoboard {
+    position: absolute;
+    text-align: left;
+    font-size: 1.2rem;
+    padding: 0rem 0rem;
+    font-weight: bold;
+    z-index: -1;
+    opacity: 1;
+    background-color: #ffffff;
+}
+
+
+
+
+
+
+#closemap, #stationdetails {
+    position: absolute;
+    z-index: -1;
+    cursor: pointer;
+}
+
+
+
+
+
+.menu-item {
+    display: flex;
+}
+
+.col {
+    width: 20%;
+    padding: 4px;
+    text-align: left;
+    cursor: pointer;
+}
+
+
+
+
+#goUp, #goDown, #scrollUp, #scrollDown, #currentdate {
+    position: absolute;
+    width: 80%;
+    padding: 1rem 1rem;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#currentdate {
+    opacity: 0.4;
+    cursor: default;
+}
+
+
+#menutitleb, #menutitle {
+    display: flex;
+    font-size: 1.5rem;
+    z-index: 31;
+}
+
+#menutitle {
+    z-index: -1;
+}
+
+

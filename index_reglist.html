@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <title>Add Map</title>
+</head>
+<body>
+
+    <div class="container">
+        <div id="map-container">
+            <div class="image" id="map"></div>
+        </div>
+        <!-- <img src="hippogirl.png" class="image">-->
+        <!-- <div class="buttons">-->
+        <button class="run">Run</button>
+        <button class="down">Down</button>
+        <button class="left">Left</button>
+        <button class="right">Right</button>
+        <div id="list-station" style="height: 500px; overflow: scroll;">
+            <ul id="list">
+                <!-- List items will go here -->
+            </ul>
+        </div>
+        <div id="stationName">ddd1</div>
+        <div id="stationAddress">ddd2</div>
+        <div id="stationCity">ddd3</div>
+        <div id="stationOperator">ddd4</div>
+        <div id="stationCapacity">ddd5</div>
+        <div id="stationX">ddd6</div>
+        <div id="stationY">ddd7</div>
+        <div id="stationvstrip">Stations:</div>
+        <div id="language">FI</div>
+        <button class="openpopup" id="calendar2">1.5.2021 - 1.5.2021</button>
+        <input type="text" id="filterStations">
+        <select id="departure_dropdown"></select>
+        <select id="return_dropdown"></select>
+        <div id="list-trip" style="height: 500px; overflow: scroll;">
+            <ul id="list-t" style="list-style-type:none">
+                <!-- List items will go here -->
+            </ul>
+        </div>
+        <div class="browse">
+            <button id="goUp">Go Up</button>
+            <button id="scrollUp">Scroll Up</button>
+            <button id="scrollDown">Scroll Down</button>
+            <button id="goDown">Go Down</button>
+        </div>
+        </div>
+
+
+
+        <!--The div element for the map -->
+
+
+
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE__Onawsf_T2y8-b_TFrsi5rx8AgIWWA&callback=initMap&v=weekly"
+                defer></script>
+        <script type="module" src="/main_solita_dev8.js"></script>
+</body>
+</html>
