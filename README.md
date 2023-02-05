@@ -2,50 +2,10 @@
 �
 �
 
+Data
+
+The station data is converted to JSON format with the station ID as the key. Here is the Python script:
 ```
-
-import functions_framework
-from io import StringIO
-import pandas as pd
-from google.cloud import storage
-import json
-
-storage_client = storage.Client()
-bucket_name = 'joeltestfiles'
-BUCKET = storage_client.get_bucket(bucket_name)
-
-@functions_framework.http
-def readcsv(request):
-
-    request_json = request.get_json(silent=True)
-    request_args = request.args
-    if request_json and 'action' in request_json:
-       action = request_json['action']
-    elif request_args and 'action' in request_args:
-       action = request_args['action']
-    else:
-       action = '2021-05-09'
-
-    filename = 'bikedata/' + action + '.csv'
-
-    blob = BUCKET.get_blob(filename)
-    csv_content = blob.download_as_string().decode("utf-8")
-    df = pd.read_csv(StringIO(csv_content))
-
-    json_data = df.to_json(orient='index')
-
-    headers= {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type':'application/json'
-    }
-    return (json_data, 200, headers)
-
-```
-
-dada
-
-```
-
 import pandas as pd
 import json
 import numpy as np
@@ -59,8 +19,22 @@ with open("stations_HelsinkiEspoo.json", "w") as f:
     json.dump(json_data, f)
     
 ```
-    
-    from datetime import datetime
+The trip data is filtered to meet the following criteria:
+*The trip must be at least 10 minutes long
+*The trip must last at least 10 seconds
+*The station ID must be a positive integer
+*The return time must be later than the departure time
+
+The data is split into three different categories for ease of use:
+*Per day (92 files)
+*Per departure station ID (approx. 500 files)
+*Per return station ID (approx. 500 files)
+
+This results in three times the amount of data but provides it in small, useful chunks for faster fetching. 
+Here is the Python script for creating the per day files (station files very similar):
+
+```
+from datetime import datetime
 
 df5 = pd.read_csv(r"C:\Users\joel_\Downloads\2021-05.csv")
 df6 = pd.read_csv(r"C:\Users\joel_\Downloads\2021-06.csv")
@@ -122,6 +96,57 @@ for startmonth in range(5,7):
             
             #filename='bikedata1/' + str(startyear) +"-" + str(startmonth).zfill(2) + "-" + str(startday).zfill(2) + '.csv'
             #df.to_csv(filename, index=False)
+
+```
+
+The data files are saved as CSV and uploaded to Google Storage. They are served by a cloud function written in Python, which returns the data in JSON format. The code for the cloud function is here.
+
+
+```
+
+import functions_framework
+from io import StringIO
+import pandas as pd
+from google.cloud import storage
+import json
+
+storage_client = storage.Client()
+bucket_name = 'joeltestfiles'
+BUCKET = storage_client.get_bucket(bucket_name)
+
+@functions_framework.http
+def readcsv(request):
+
+    request_json = request.get_json(silent=True)
+    request_args = request.args
+    if request_json and 'action' in request_json:
+       action = request_json['action']
+    elif request_args and 'action' in request_args:
+       action = request_args['action']
+    else:
+       action = '2021-05-09'
+
+    filename = 'bikedata/' + action + '.csv'
+
+    blob = BUCKET.get_blob(filename)
+    csv_content = blob.download_as_string().decode("utf-8")
+    df = pd.read_csv(StringIO(csv_content))
+
+    json_data = df.to_json(orient='index')
+
+    headers= {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type':'application/json'
+    }
+    return (json_data, 200, headers)
+
+```
+
+dada
+
+
+    
+    
             
             
 
