@@ -2,7 +2,7 @@
 �
 �
 
-##Data
+## Data
 
 The station data is converted to JSON format with the station ID as the key. Here is the Python script:
 ```
@@ -20,15 +20,15 @@ with open("stations_HelsinkiEspoo.json", "w") as f:
     
 ```
 The trip data is filtered to meet the following criteria:
--The trip must be at least 10 minutes long
--The trip must last at least 10 seconds
--The station ID must be a positive integer
--The return time must be later than the departure time
+- The trip must be at least 10 minutes long
+- The trip must last at least 10 seconds
+- The station ID must be a positive integer
+- The return time must be later than the departure time
 
 The data is split into three different categories for ease of use:
--Per day (92 files)
--Per departure station ID (approx. 500 files)
--Per return station ID (approx. 500 files)
+- Per day (92 files)
+- Per departure station ID (approx. 500 files)
+- Per return station ID (approx. 500 files)
 
 This results in three times the amount of data but provides it in small, useful chunks for faster fetching. 
 Here is the Python script for creating the per day files (station files very similar):
